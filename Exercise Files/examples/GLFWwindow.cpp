@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #define GLEW_STATIC
 #include <GL/glew.h>
-#include "GLFW/glfw3.h"
+#include "GLFW/glfw3.h"     // graphics library extension wrangler
 #include <iostream>
 
 
@@ -43,12 +43,13 @@ int main(){
     printf("hello window\n");
   
     /*-----------------------------------------------------------------------------
-     *  MAIN LOOP
+     *  MAIN LOOP - Draw Loop (Render once per frame)
      *-----------------------------------------------------------------------------*/
-    while ( !glfwWindowShouldClose(window) ){
-        glViewport(0,0,w,h);             //Set Viewport in pixels
-        glClearColor(1,0,0,1);           //CLEAR WINDOW CONTENTS
-        glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    while ( !glfwWindowShouldClose(window) ){ // glfwWindowShouldClose takes a window and returns whether we want to close it
+        glViewport(0,0,w,h);                  //Set Viewport in pixels (0,0) top left hand corner
+        glClearColor(0.3f,0.6f,0.4f,1.0f);                    //CLEAR WINDOW CONTENTS (RGBA)
+        glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // Execute the cleaing of the clear color we set before
+                                                              // The depth bit is also enabled to clear the depth buffer
 
         //put drawing code in here
 
@@ -56,7 +57,8 @@ int main(){
         glfwPollEvents();                       //<-- LISTEN FOR WINDOW EVENTS
     }
   
-    //Destroy window and terminate glfw
+    // Once we exit the winodw
+    //Destroy window and terminate glfw session
     glfwDestroyWindow(window);
     glfwTerminate();
     printf("goodbye window\n");

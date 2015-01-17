@@ -28,18 +28,24 @@ using namespace std;
 int main(int argc, char * argv[]){
 
     GLFWwindow * window;
+    // Initialize glfw
     if (!glfwInit()) exit(EXIT_FAILURE);
     window = glfwCreateWindow(1024,768,"glfw",NULL,NULL);
     if (!window) {
         glfwTerminate();
         exit(EXIT_FAILURE);
     }
-  glfwMakeContextCurrent(window);
     
-  //Get Version String
-  const GLubyte * p = glGetString(GL_VERSION);
-  cout << "OpenGL Version: " << p << endl;
-  return 0;
+    // Set the newly created window as current context
+    // - A GL context is a platform-specific object,
+    // - which contains and enables OpenGL's functionality
+     
+    glfwMakeContextCurrent(window);
+    
+    //Get Version String
+    const GLubyte * p = glGetString(GL_VERSION);
+    cout << "OpenGL Version: " << p << endl;
+    return 0;
 }
 
 
